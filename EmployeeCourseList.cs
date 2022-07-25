@@ -19,6 +19,7 @@ namespace HRDatabaseTEST
         EmpXCourse _current;//declare current ID
         public EmployeeCourseList(Employee employee)//opening the form with the retrieved ID
         {
+            //adsds
             _employee = employee;//ID grabbed
             InitializeComponent();
             dbContext = new HRDBContext();
@@ -27,7 +28,7 @@ namespace HRDatabaseTEST
 
         private void EmployeeCourseList_Load(object sender, EventArgs e)
         {
-
+            //hgfhgf
             dbs.DataSource = dbContext.EmpXCourses.Where(a => a.EmployeeID == _employee.EmployeeID).ToList();//Query selecting the data with grabbed ID
             gridControl2.DataSource = dbs;
             dbs.CurrentChanged += Dbs_CurrentChanged;
