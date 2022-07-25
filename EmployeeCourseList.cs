@@ -20,6 +20,7 @@ namespace HRDatabaseTEST
         public EmployeeCourseList(Employee employee)//opening the form with the retrieved ID
         {
             //adsds
+            //ouhiu
             _employee = employee;//ID grabbed
             InitializeComponent();
             dbContext = new HRDBContext();
