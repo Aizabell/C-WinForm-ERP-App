@@ -30,7 +30,7 @@ namespace HRDatabaseTEST
             dbs.DataSource = dbContext.Employees.ToList();//Show all data in the grid
             dbs.CurrentChanged += Dbs_CurrentChanged;//Operates the Dbs_current changed to load image
             //The below list is Data Layer View of Datadbindings
-            EmployeeIDTextEdit.DataBindings.Add("EditValue", dbs, "EmployeeID", true, DataSourceUpdateMode.OnPropertyChanged);
+            EmployeeIDTextEdit.DataBindings.Add("EditValue", dbs, "ID", true, DataSourceUpdateMode.OnPropertyChanged);
             FirstNameTextEdit.DataBindings.Add("EditValue", dbs, "FirstName", true, DataSourceUpdateMode.OnPropertyChanged);
             LastNameTextEdit.DataBindings.Add("EditValue", dbs, "LastName", true, DataSourceUpdateMode.OnPropertyChanged);
             SexTextEdit.DataBindings.Add("EditValue", dbs, "Sex", true, DataSourceUpdateMode.OnPropertyChanged);
@@ -47,20 +47,20 @@ namespace HRDatabaseTEST
             gridControl1.DataSource = dbs;
             Dbs_CurrentChanged(this, null);
         }
-
+        
         private void Dbs_CurrentChanged(object sender, EventArgs e)//Image with CurrentID Load
         {
             _current = dbs.Current as Employee;
             if (_current != null)
             {
-                if (_current.EmployeeID != 0)
+                if (_current.ID != 0)
 
                 {
                     PPEdit.Image = Image.FromFile(_current.Picture);
                 }
             }
         }
-
+        
         public void BackBtn_Click(object sender, EventArgs e)
         {
             dbs.MovePrevious();
@@ -73,7 +73,7 @@ namespace HRDatabaseTEST
         private void SaveBtn_Click(object sender, EventArgs e)
         {
             var obj = dbs.Current as Employee;
-            if (obj.EmployeeID == default(int))
+            if (obj.ID == default(int))
             {
                 dbContext.Employees.Add(obj);
             }
@@ -111,7 +111,7 @@ namespace HRDatabaseTEST
             open.RestoreDirectory = true;
             if (open.ShowDialog() == DialogResult.OK)//Open image
             {
-                if (obj.EmployeeID != default(int))
+                if (obj.ID != default(int))
                 {
                     PPEdit.Image = new Bitmap(open.FileName);//ImageBitmap
                     obj.Picture = open.FileName;
@@ -124,12 +124,12 @@ namespace HRDatabaseTEST
                     /// get id after inserting new employee
                     /// copy to specific location e.g. D:\Images with employeeID filename
                     
-                    if (obj.EmployeeID == default(int))//Matching image with EployeeID
+                    if (obj.ID == default(int))//Matching image with EployeeID
                     {
                         dbContext.Employees.Add(obj);
                     }
                     dbContext.SaveChanges();
-                    if (obj.EmployeeID != default(int))
+                    if (obj.ID != default(int))
                     {
                         PPEdit.Image = new Bitmap(open.FileName);
                         obj.Picture = open.FileName;
@@ -153,7 +153,7 @@ namespace HRDatabaseTEST
             if (int.TryParse(SearchTextEdit.Text, out id))//try changing int and will not result error if failed
             {
                 emp = (from a in dbContext.Employees//search query
-                           where (a.EmployeeID == id || a.FirstName == SearchTextEdit.Text || a.Country == SearchTextEdit.Text || a.LastName == SearchTextEdit.Text)
+                           where (a.ID == id || a.FirstName == SearchTextEdit.Text || a.Country == SearchTextEdit.Text || a.LastName == SearchTextEdit.Text)
                            select a).FirstOrDefault();
             }
             else
@@ -163,9 +163,9 @@ namespace HRDatabaseTEST
                            select a).FirstOrDefault();
             }
 
-            if (emp == null) return;//will ignore if the search name was failed and can't find ID
-            var eSearch = dbs.IndexOf(dbs.List.OfType<Employee>().FirstOrDefault(a => a.EmployeeID == emp.EmployeeID));
-            dbs.Position = eSearch;//query checking the employeeetableID with the emp 
+            if (emp == null) return; //will ignore if the search name was failed and can't find ID
+            var eSearch = dbs.IndexOf(dbs.List.OfType<Employee>().FirstOrDefault(a => a.ID == emp.ID));
+            dbs.Position = eSearch; //query checking the employeeetableID with the emp 
          
 
             
@@ -198,5 +198,7 @@ namespace HRDatabaseTEST
             
             
         }
+
+
     }
 }

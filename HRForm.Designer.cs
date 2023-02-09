@@ -30,8 +30,8 @@ namespace HRDatabaseTEST
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.oFDBDataSet = new HRDatabaseTEST.OFDBDataSet();
-            this.employeeTableAdapter = new HRDatabaseTEST.OFDBDataSetTableAdapters.EmployeeTableAdapter();
+            this.oFDBDataSet = new HRDatabaseTEST.HRDBDataSet();
+            this.employeeTableAdapter = new HRDatabaseTEST.HRDBDataSetTableAdapters.EmployeeTableAdapter();
             this.persistentRepository1 = new DevExpress.XtraEditors.Repository.PersistentRepository(this.components);
             this.dataLayoutControl1 = new DevExpress.XtraDataLayout.DataLayoutControl();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
@@ -896,8 +896,8 @@ namespace HRDatabaseTEST
         }
 
         #endregion
-        private OFDBDataSet oFDBDataSet;
-        private OFDBDataSetTableAdapters.EmployeeTableAdapter employeeTableAdapter;
+        private HRDBDataSet oFDBDataSet;
+        private HRDBDataSetTableAdapters.EmployeeTableAdapter employeeTableAdapter;
         private DevExpress.XtraEditors.Repository.PersistentRepository persistentRepository1;
         private DevExpress.XtraDataLayout.DataLayoutControl dataLayoutControl1;
         private DevExpress.XtraLayout.LayoutControlGroup Root;

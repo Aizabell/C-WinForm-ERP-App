@@ -14,7 +14,7 @@ namespace HRDatabaseTEST
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HRForm());
+            Application.Run(new LoginForm());
         }
     }
 }

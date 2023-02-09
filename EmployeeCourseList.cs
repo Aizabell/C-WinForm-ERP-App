@@ -28,7 +28,7 @@ namespace HRDatabaseTEST
         private void EmployeeCourseList_Load(object sender, EventArgs e)
         {
 
-            dbs.DataSource = dbContext.EmpXCourses.Where(a => a.EmployeeID == _employee.EmployeeID).ToList();//Query selecting the data with grabbed ID
+            dbs.DataSource = dbContext.EmpXCourses.Where(a => a.EmployeeID == _employee.ID).ToList();//Query selecting the data with grabbed ID
             gridControl2.DataSource = dbs;
             dbs.CurrentChanged += Dbs_CurrentChanged;
             RCourseIDLookUpEdit.DataSource = dbContext.Courses.ToList();
@@ -73,7 +73,7 @@ namespace HRDatabaseTEST
             _current.LastName = _employee.LastName;
             if(_current.EMPXCID == default(int))//when new item add there is no value thus adding default value
             {
-                _current.EmployeeID = _employee.EmployeeID;//assigning the new current row to assign the grabbed ID
+                _current.EmployeeID = _employee.ID;//assigning the new current row to assign the grabbed ID
                 dbContext.EmpXCourses.Add(_current);//saving syntax
             }
 

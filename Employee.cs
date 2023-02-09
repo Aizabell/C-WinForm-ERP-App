@@ -13,7 +13,7 @@ namespace HRDatabaseTEST
     {
         [Key]
 
-        public int EmployeeID { get; set; }
+        public int ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Sex { get; set; }

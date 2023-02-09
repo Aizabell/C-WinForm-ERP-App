@@ -13,8 +13,8 @@ namespace HRDatabaseTEST
     {
         [Key]
         public int EMPXCID { get; set; }
-        public int EmployeeID { get; set; }
-        public int CourseID { get; set; }
+        public int? EmployeeID { get; set; }
+        public int? CourseID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string CourseName { get; set; }
