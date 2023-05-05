@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Data.Filtering.Helpers;
+using DevExpress.XtraEditors;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +17,8 @@ namespace HRDatabaseTEST
         HRDBContext dbContext;
         BindingSource dbs;
         EmpPassword _emppass;
-
+        bool logincheck = false;
+        public event EventHandler<bool> OnActivated;
 
         public LoginForm()
         {
@@ -30,16 +32,7 @@ namespace HRDatabaseTEST
 
             if (dbContext.EmpPasswords.AsNoTracking().Any(a => a.FirstName == UsernameTxt.Text && a.Password == PasswordTxt.Text))
             {
-                this.Hide();
-                var MainOpen = new HRDocMgr();
-                MainOpen.ShowDialog();
-                
-                /*
-                using (var MainOpen = new HRMainForm(_emppass))
-                {
-                    MainOpen.ShowDialog();
-                }
-                */
+                OnActivated?.Invoke(this, true);
             }
             else
             {

@@ -30,11 +30,13 @@ namespace HRDatabaseTEST
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HRDocMgr));
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.HRForm = new DevExpress.XtraBars.BarButtonItem();
-            this.AttendenceForm = new DevExpress.XtraBars.BarButtonItem();
-            this.ReportMainForm = new DevExpress.XtraBars.BarButtonItem();
-            this.LogoutBtn = new DevExpress.XtraBars.BarButtonItem();
+            this.HRForm = new DevExpress.XtraBars.BarCheckItem();
+            this.AttendanceForm = new DevExpress.XtraBars.BarCheckItem();
+            this.ReportMainForm = new DevExpress.XtraBars.BarCheckItem();
+            this.LogoutBtn = new DevExpress.XtraBars.BarCheckItem();
+            this.LoginForm = new DevExpress.XtraBars.BarCheckItem();
             this.GeneralRibbon = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.EmpInfoGrp = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ReportGrp = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -57,12 +59,13 @@ namespace HRDatabaseTEST
             this.ribbon.ExpandCollapseItem,
             this.ribbon.SearchEditItem,
             this.HRForm,
-            this.AttendenceForm,
+            this.AttendanceForm,
             this.ReportMainForm,
-            this.LogoutBtn});
+            this.LogoutBtn,
+            this.LoginForm});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ribbon.MaxItemId = 6;
+            this.ribbon.Margin = new System.Windows.Forms.Padding(4);
+            this.ribbon.MaxItemId = 7;
             this.ribbon.Name = "ribbon";
             this.ribbon.OptionsMenuMinWidth = 385;
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -79,13 +82,13 @@ namespace HRDatabaseTEST
             this.HRForm.Name = "HRForm";
             this.HRForm.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.HRForm_ItemClick);
             // 
-            // AttendenceForm
+            // AttendanceForm
             // 
-            this.AttendenceForm.Caption = "Attendence List";
-            this.AttendenceForm.Id = 2;
-            this.AttendenceForm.ImageOptions.SvgImage = global::HRDatabaseTEST.Properties.Resources.singlepageview;
-            this.AttendenceForm.Name = "AttendenceForm";
-            this.AttendenceForm.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.AttendenceForm_ItemClick);
+            this.AttendanceForm.Caption = "Attendence List";
+            this.AttendanceForm.Id = 2;
+            this.AttendanceForm.ImageOptions.SvgImage = global::HRDatabaseTEST.Properties.Resources.singlepageview;
+            this.AttendanceForm.Name = "AttendanceForm";
+            this.AttendanceForm.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.AttendenceForm_ItemClick);
             // 
             // ReportMainForm
             // 
@@ -103,6 +106,14 @@ namespace HRDatabaseTEST
             this.LogoutBtn.Name = "LogoutBtn";
             this.LogoutBtn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.LogoutBtn_ItemClick);
             // 
+            // LoginForm
+            // 
+            this.LoginForm.Caption = "Log In";
+            this.LoginForm.Id = 6;
+            this.LoginForm.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("LoginForm.ImageOptions.SvgImage")));
+            this.LoginForm.Name = "LoginForm";
+            this.LoginForm.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.LoginBtn_ItemClick);
+            // 
             // GeneralRibbon
             // 
             this.GeneralRibbon.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -116,7 +127,7 @@ namespace HRDatabaseTEST
             // 
             this.EmpInfoGrp.AllowTextClipping = false;
             this.EmpInfoGrp.ItemLinks.Add(this.HRForm);
-            this.EmpInfoGrp.ItemLinks.Add(this.AttendenceForm);
+            this.EmpInfoGrp.ItemLinks.Add(this.AttendanceForm);
             this.EmpInfoGrp.Name = "EmpInfoGrp";
             this.EmpInfoGrp.Text = "Employee Information";
             // 
@@ -130,8 +141,10 @@ namespace HRDatabaseTEST
             // ribbonPageGroup2
             // 
             this.ribbonPageGroup2.AllowTextClipping = false;
+            this.ribbonPageGroup2.ItemLinks.Add(this.LoginForm);
             this.ribbonPageGroup2.ItemLinks.Add(this.LogoutBtn);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            this.ribbonPageGroup2.Text = "Account Option";
             // 
             // OptionRibbon
             // 
@@ -148,7 +161,7 @@ namespace HRDatabaseTEST
             // ribbonStatusBar
             // 
             this.ribbonStatusBar.Location = new System.Drawing.Point(0, 685);
-            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ribbonStatusBar.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
             this.ribbonStatusBar.Size = new System.Drawing.Size(905, 30);
@@ -169,11 +182,12 @@ namespace HRDatabaseTEST
             this.Controls.Add(this.ribbonStatusBar);
             this.Controls.Add(this.ribbon);
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "HRDocMgr";
             this.Ribbon = this.ribbon;
             this.StatusBar = this.ribbonStatusBar;
             this.Text = "HRDocMgr";
+            this.Load += new System.EventHandler(this.HRDocMgr_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).EndInit();
@@ -189,14 +203,15 @@ namespace HRDatabaseTEST
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup EmpInfoGrp;
         private DevExpress.XtraBars.Ribbon.RibbonStatusBar ribbonStatusBar;
         private DevExpress.XtraBars.Docking2010.DocumentManager documentManager;
-        private DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView tabbedView1;
-        private DevExpress.XtraBars.BarButtonItem HRForm;
-        private DevExpress.XtraBars.BarButtonItem AttendenceForm;
-        private DevExpress.XtraBars.BarButtonItem ReportMainForm;
+        private DevExpress.XtraBars.BarCheckItem HRForm;
+        private DevExpress.XtraBars.BarCheckItem AttendanceForm;
+        private DevExpress.XtraBars.BarCheckItem ReportMainForm;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ReportGrp;
-        private DevExpress.XtraBars.BarButtonItem LogoutBtn;
+        private DevExpress.XtraBars.BarCheckItem LogoutBtn;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private DevExpress.XtraBars.Ribbon.RibbonPage OptionRibbon;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.BarCheckItem LoginForm;
+        private DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView tabbedView1;
     }
 }

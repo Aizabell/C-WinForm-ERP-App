@@ -194,6 +194,12 @@
     <Compile Include="Report\XRpAttendence.Designer.cs">
       <DependentUpon>XRpAttendence.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\XRpMonthlyAttendence.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\XRpMonthlyAttendence.Designer.cs">
+      <DependentUpon>XRpMonthlyAttendence.cs</DependentUpon>
+    </Compile>
     <Compile Include="TrainingCourse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Report\XRpAttendence.resx">
       <DependentUpon>XRpAttendence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\XRpMonthlyAttendence.resx">
+      <DependentUpon>XRpMonthlyAttendence.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TrainingCourse.resx">
       <DependentUpon>TrainingCourse.cs</DependentUpon>

@@ -16,6 +16,7 @@ namespace HRDatabaseTEST
         HRDBContext dbContext;
         BindingSource dbs;
         Employee _current;
+        
         public HRForm()
         {
             InitializeComponent();
@@ -23,7 +24,6 @@ namespace HRDatabaseTEST
             dbs = new BindingSource();
             var currentEID = dbs.Current as Employee;
         }
-
         private void HRForm_Load(object sender, EventArgs e)
         {
             //this.employeeTableAdapter.Fill(this.oFDBDataSet.Employee);

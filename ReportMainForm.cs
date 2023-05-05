@@ -24,7 +24,7 @@ namespace HRDatabaseTEST
             dbs = new BindingSource();
         }
 
-        private void simpleButton7_Click(object sender, EventArgs e)
+        private void EmpListRepBtn_Click(object sender, EventArgs e)
         {
             using (var frm = new ReportViewer())
             {
@@ -40,7 +40,6 @@ namespace HRDatabaseTEST
         
         private void showReport(DateTime fromDate, DateTime toDate)
         {
-
             using (var frm = new ReportViewer())
             {
                 var rp = new XRpAttendence();
@@ -52,24 +51,28 @@ namespace HRDatabaseTEST
             }
         }
 
-        private void AttJulRepOpnBtn_Click(object sender, EventArgs e)
+        private void AttJanRepOpnBtn_Click(object sender, EventArgs e)
         {
-            showReport(DateTime.Parse("2022/07/01"), DateTime.Parse("2022/08/01"));
+            showReport(DateTime.Parse("2023/01/01"), DateTime.Parse("2023/01/31"));
         }
 
-        private void AttAugRepOpnBtn_Click(object sender, EventArgs e)
+        private void AttFebRepOpnBtn_Click(object sender, EventArgs e)
         {
-            showReport(DateTime.Parse("2022/08/01"), DateTime.Parse("2022/09/01"));
+            showReport(DateTime.Parse("2023/02/01"), DateTime.Parse("2023/02/28"));
         }
 
-        private void AttSepRepOpnBtn_Click(object sender, EventArgs e)
+        private void AttMarRepOpnBtn_Click(object sender, EventArgs e)
         {
-            
+            showReport(DateTime.Parse("2023/03/01"), DateTime.Parse("2023/03/30"));
         }
 
-        private void AttOctRepOpnBtn_Click(object sender, EventArgs e)
+        private void AttAplRepOpnBtn_Click(object sender, EventArgs e)
         {
-            showReport(DateTime.Parse("2022/10/01"), DateTime.Parse("2022/11/01"));
+            showReport(DateTime.Parse("2023/04/01"), DateTime.Parse("2023/04/30"));
+        }
+        private void AttMayRepOpnBtn_Click(object sender, EventArgs e)
+        {
+            showReport(DateTime.Parse("2023/05/01"), DateTime.Parse("2023/05/30"));
         }
 
         private void InfoButtonItem_Click(object sender, EventArgs e)
@@ -91,5 +94,37 @@ namespace HRDatabaseTEST
                 frm.ShowDialog();
             }
         }
+
+        private void MthAttRepOpnBtn_Click(object sender, EventArgs e)
+        {
+            
+            using (var frm = new ReportViewer())
+            {
+                var rp = new XRpMonthlyAttendence();
+                //add parameter form with linq perdicate
+                rp.DataSource = dbContext.Attendances.AsNoTracking().ToList();
+                rp.CreateDocument();
+                frm.LoadReport(rp);
+                frm.ShowDialog();
+            }
+            /*var reportwithmonth =dbContext.Attendances.AsNoTracking();
+            using (var frm = new ReportViewer())
+            {
+                var yearlyreport = new XRpMonthlyAttendence();
+                yearlyreport.DataSource = reportwithmonth;
+                yearlyreport.CreateDocument();
+                frm.LoadReport(yearlyreport);
+                frm.ShowDialog();
+            }*/
+
+            /*var yearlyreport = new XRpMonthlyAttendence();
+            var frm = new ReportViewer();
+            frm.LoadReport(yearlyreport);
+            frm.ShowDialog();*/
+
+           
+        }
+
+        
     }
 }
